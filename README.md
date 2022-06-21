@@ -11,7 +11,7 @@ Primarily, you need to [install fairseq](https://github.com/facebookresearch/GEN
 - the dictionary to map the generated strings to Wikidata identifiers
 - a mention table to restrict the search space to a number of candidates
 
-Then we use [entity_le.py](https://github.com/ffaisal93/dataset_geography/blob/master/code/entity_le.py) (modified version of mGENRE example codes) to extract the entities given the dataset files(format: pickle file containing dataset texts as a list of string). This script is defined to process 200 sentences at once.
+Then we use [entity_le.py](https://github.com/ffaisal93/dataset_geography/blob/master/code/entity_le.py) (modified version of mGENRE example codes) to extract the entities given the dataset files(format: pickle file containing dataset texts as a list of string). This script is defined to process 200 sentences at once. Provide the [correct model file paths](https://github.com/ffaisal93/dataset_geography/blob/master/code/entity_le.py#:~:text=model_mlpath%20%3D%20%22../models,lang_title2wikidataID%2Dnormalized_with_redirect.pkl%22) before running.
 
 #### example input dataset format:
 ```python
