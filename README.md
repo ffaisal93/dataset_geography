@@ -28,7 +28,7 @@ import sys
 #### command to extract entities for all the files in `data/sentences/tydiqa/` folder:
 ```bash
 cd ../code
-python mgenre_ner.sh ../data/sentences/tydiqa ../data/entities/tydiqa 
+./mgenre_ner.sh ../data/sentences/tydiqa ../data/entities/tydiqa 
 ```
 
 #### example output entity linked dataset format:
