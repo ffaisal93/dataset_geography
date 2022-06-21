@@ -55,6 +55,7 @@ def do_operation(sentences):
 if __name__ == "__main__":
     datafile = str(sys.argv[1])
     name=str(sys.argv[2])
+    outpath=str(sys.argv[3])
     print(name)
     if check_out(name)==True:
         logger.info('file exist')
@@ -81,8 +82,8 @@ if __name__ == "__main__":
         logger.info('wikimap loaded')
         # do_operation(sentences)
 
-        temp_path = '../outputs/{}-temp.pickle'.format(name)
-        out_path = '../outputs/{}.pickle'.format(name)
+        temp_path = '{}/{}-temp.pickle'.format(outpath, name)
+        out_path = '{}/{}.pickle'.format(outpath, name)
         left_sent = []
         if os.path.exists(temp_path)==True:
             with open(temp_path,'rb') as f:
