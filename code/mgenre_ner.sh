@@ -6,5 +6,5 @@ do
 	echo $file
 	base=$(basename $file .pickle)
 	echo $base
-	entity_le.py $file $base $out
+	python entity_le.py $file $base $out
 done
