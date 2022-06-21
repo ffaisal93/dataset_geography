@@ -33,8 +33,8 @@ def get_name(ent):
 #countries_to_check = ['Canada','Lithuania','Austria','German Confederation','Poland','Czech Republic']
 countries_to_check = []
 
-for LANG in ['bengali', 'english', 'finnish', 'indonesian', 'japanese', 'korean', 'russian', 'swahili', 'telugu', 'thai']:
-    with open(f"ner_linking/data/entities/tydiqa/tydiqa-train-{LANG}.pickle", 'rb') as inp:
+for LANG in ['bengali','arabic', 'english', 'finnish', 'indonesian', 'japanese', 'korean', 'russian', 'swahili', 'telugu', 'thai']:
+    with open(f"../data/entities/tydiqa/tydiqa-dev-{LANG}.pickle", 'rb') as inp:
         lines = pickle.load(inp)
 
     client = Client()
@@ -247,6 +247,8 @@ for LANG in ['bengali', 'english', 'finnish', 'indonesian', 'japanese', 'korean'
                 id2geo[key]['name'] = d[key]['name']
                 id2geo[key]['born'] = place2country[d[key]['born']]['country']
             else:
+                if d[key]['born']=='Q2042400':
+                    print('')
                 place = client.get(d[key]['born'], load=True)
                 for key2 in place.keys():
                     if key2.id == 'P17':
@@ -371,8 +373,8 @@ for LANG in ['bengali', 'english', 'finnish', 'indonesian', 'japanese', 'korean'
 
     import pandas as pd
 
-    import plotly.express as px
-    import plotly.graph_objects as go
+    # import plotly.express as px
+    # import plotly.graph_objects as go
 
     country_list = list(c2code.keys())
     iso_list = [c2code[c] for c in country_list]
@@ -507,31 +509,34 @@ for LANG in ['bengali', 'english', 'finnish', 'indonesian', 'japanese', 'korean'
     fig.show()
     '''
 
-    fig = go.Figure(data=go.Scattergeo(
-            locations=df["iso_alpha"],
-            #size=df["log_counts"], # lifeExp is a column of gapminder
-            text=df["text"], # column to add to hover information
-            #colorscale="Viridis",
-            mode = 'markers',
-            marker_color = df['log_counts'],
 
-            marker_size = df["log_counts"],
-            #marker_sizemin = 6,
-            marker_colorscale="Bluered",
-            marker_sizeref = 0.08,
-            #marker_line_color='black',
-            #marker_line_width=0.5,
-            marker_colorbar_title = 'log(#entities)',
-            marker_colorbar_ticktext = [0,10,100,1000],
-            ))
-    fig.update_layout(title_text=f'Geographic Coverage: tydiqa-{LANG}', 
-        geo=dict(
-        showframe=True,
-        showcoastlines=True,
-        showcountries=True,
-        projection_type='natural earth'
-    ))
-    fig.write_image(f"plots/tydiqa-{LANG}.scatter.png")
-    fig.show()
-    
+
+#================================================
+    # fig = go.Figure(data=go.Scattergeo(
+    #         locations=df["iso_alpha"],
+    #         #size=df["log_counts"], # lifeExp is a column of gapminder
+    #         text=df["text"], # column to add to hover information
+    #         #colorscale="Viridis",
+    #         mode = 'markers',
+    #         marker_color = df['log_counts'],
+
+    #         marker_size = df["log_counts"],
+    #         #marker_sizemin = 6,
+    #         marker_colorscale="Bluered",
+    #         marker_sizeref = 0.08,
+    #         #marker_line_color='black',
+    #         #marker_line_width=0.5,
+    #         marker_colorbar_title = 'log(#entities)',
+    #         marker_colorbar_ticktext = [0,10,100,1000],
+    #         ))
+    # fig.update_layout(title_text=f'Geographic Coverage: tydiqa-{LANG}', 
+    #     geo=dict(
+    #     showframe=True,
+    #     showcoastlines=True,
+    #     showcountries=True,
+    #     projection_type='natural earth'
+    # ))
+    # fig.write_image(f"plots/tydiqa-{LANG}.scatter.png")
+    # fig.show()
+#=================================================    
 
